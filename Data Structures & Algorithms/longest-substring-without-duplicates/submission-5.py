@@ -1,0 +1,19 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l, r = 0, 0
+        maxC = 1
+        # "abca"
+        if len(s) < 2:
+            return 1 if len(s) > 0 else 0
+        seen = set()
+        while r < len(s):
+            while s[r] in seen:
+                seen.remove(s[l])
+                l += 1
+            else:
+                seen.add(s[l])
+                seen.add(s[r])
+                #counter += 1
+            maxC = max(maxC, len(seen))
+            r += 1
+        return maxC
